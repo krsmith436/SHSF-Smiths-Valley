@@ -1,12 +1,10 @@
 /***************************************************************************
   Sketch Name: SHSF_SmithsValley
   Written By: Kevin R. Smith
+  Created: 2023-Apr-07
 
-  This sketch is part of a system to control the Smith, Huotari & Santa Fe (SHSF) model railroad.
-  The system consists of several MCUs communicating by Bluetooth Low Energy (BLE) using a Central/Peripheral protocol.
-  Smiths Valley is setup as a Peripheral.
-
-  Elements of control:
+  This sketch is part of a DC control system for the Smith, Huotari & Santa Fe (SHSF) HO scale model railroad.
+  Smiths Valley controls the following elements of railroad:
   1) 16 Tortoise Slow Motion Switch Machine
       NOTE: Unique feature is the motor can remain powered after movement so no need to turn off.
   2) 8 Blocks with A or B cab control
@@ -70,8 +68,6 @@ void setup() {
   mySerCmd.AddCmd ( F ( "v" ) , SERIALCMD_FROMALL, dsplyVoltages );
   mySerCmd.AddCmd ( F ( "vn" ) , SERIALCMD_FROMALL, getVersion );
   mySerCmd.AddCmd ( F ( "?" ) , SERIALCMD_FROMALL, getHelp );
-  mySerCmd.AddCmd ( F ( "lf" ) , SERIALCMD_FROMALL, set_LEDOF );
-  mySerCmd.AddCmd ( F ( "lo" ) , SERIALCMD_FROMALL, set_LEDON );
   //
   // Check 5V accessory power and do not add any more commands if out of range.
   blnAccsPwrFault = chkAccessoryPower();
@@ -129,8 +125,6 @@ void getHelp() {
   mySerCmd.Print(F("f \t Fault Status Report\n"));
   mySerCmd.Print(F("vn \t Version number of software\n"));
   mySerCmd.Print(F("? \t Help\n"));
-  mySerCmd.Print(F("lo \t Turn ON BUILTIN_LED\n"));
-  mySerCmd.Print(F("lf \t Turn OFF BUILTIN_LED\n"));
 }
 //-----------------Loop Code-------------------------//
 void loop() {

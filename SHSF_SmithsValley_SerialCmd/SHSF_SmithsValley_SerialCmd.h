@@ -1,7 +1,8 @@
 // all # define options should be defined here,  this keeps them together in a nice way.
 //
-String VERSION_ID = "SerialCmd V5 2023-Dec-20";
+String VERSION_ID = "SerialCmd V6 2024-Jan-25";
 /* 
+V6 - Moved to GitHub.
 V5 - Added analog input for Accessory (5V) voltage.
 V4 - Changed pin definitions for better layout on pcb.
 V3 - Removed Bluetooth through SoftwareSerial and now through hardware Serial.
