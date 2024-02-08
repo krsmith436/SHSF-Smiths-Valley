@@ -4,7 +4,7 @@
   Created: 2023-Apr-07
 
   This sketch is part of a DC control system for the Smith, Huotari & Santa Fe (SHSF) HO scale model railroad.
-  Smiths Valley controls the following elements of railroad:
+  Elements of control:
   1) 16 Tortoise Slow Motion Switch Machine
       NOTE: Unique feature is the motor can remain powered after movement so no need to turn off.
   2) 8 Blocks with A or B cab control
