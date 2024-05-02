@@ -1,7 +1,8 @@
 // all # define options should be defined here,  this keeps them together in a nice way.
 //
-String VERSION_ID = "SerialCmd V6 2024-Jan-25";
+String VERSION_ID = "SerialCmd V7 2024-Apr-20";
 /* 
+V7 - Added I2C.
 V6 - Moved to GitHub.
 V5 - Added analog input for Accessory (5V) voltage.
 V4 - Changed pin definitions for better layout on pcb.
@@ -70,6 +71,9 @@ const int SOUND_NUMBER_MAX = 6;
 const int ADDRESS_LED_COUNT = 4;
 const int ADDRESS_LED_BRIGHTNESS = 40;// max = 255
 const int ADDRESS_LED_BLOCK_INDEX = 0;
+//
+//--------------------- I2C Addresses ----------------------
+const uint8_t THIS_DEVICE_I2C_ADDR = 0x09; // Smiths Valley is a I2C device.
 //
 //-------------------- Pin Definitions ---------------------
 //        LED_BUILTIN = 13 // Fault Indication.

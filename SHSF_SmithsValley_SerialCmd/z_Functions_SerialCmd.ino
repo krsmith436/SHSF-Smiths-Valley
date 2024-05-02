@@ -1,3 +1,33 @@
+void handleI2cReceivedData() {
+    switch (I2cRxData) {
+      case 1: 
+        soundWhistle();
+        break;
+      default:
+        mySerCmd.Print (F("ERROR: Urecognized I2C command = "));
+        mySerCmd.Print(I2cRxData);
+        mySerCmd.Print("\n");
+        break;
+    }
+}
+//
+//
+// This function is called by the Wire library when a I2C message is received.
+void I2cReceiveEvent(int numBytesReceived) {
+  if (newI2cRxData == false) {
+    // copy the data to I2cRxData.
+    I2cRxData = Wire.read();
+    newI2cRxData = true;
+  }
+  else {
+    // dump the data
+    while(Wire.available() > 0) {
+      byte c = Wire.read();
+    }
+  }
+}
+//
+//
 void showAddressableLeds (int intPattern) {
   /* Below is an example of how to control the individual LEDs inside the 5050 pacakge.
      strip.setPixelColor(X, strip.Color(R,G,B));

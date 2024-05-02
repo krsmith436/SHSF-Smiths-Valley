@@ -22,6 +22,7 @@
 ****************************************************************************
 */
 //-----------------Calling libraries needed to run-----------//
+#include <Wire.h> // I2C
 #include <SoftwareSerial.h> // MP3 player
 #include <DFRobotDFPlayerMini.h> // MP3 player functions
 #include "SHSF_SmithsValley_SerialCmd.h"
@@ -47,9 +48,16 @@ Adafruit_NeoPixel strip(ADDRESS_LED_COUNT, ADDRESS_LED_PIN, NEO_GRB + NEO_KHZ800
 bool blnAccsPwrFault = true;
 bool blnMp3PlayerFault = true;
 //
+// I2C
+byte I2cRxData = 0xFF;
+volatile bool newI2cRxData = false;
+//
 //-----------------Setup Code-------------------------//
 void setup() {
-  Serial.begin(9600);// Initialize the USB port for 9600 baud.
+  Serial.begin(COM_BAUD_RATE);// Initialize the USB port for 9600 baud.
+  // set up I2C
+  Wire.begin(THIS_DEVICE_I2C_ADDR); // join i2c bus
+  Wire.onReceive(I2cReceiveEvent); // register event
   //
   mySerCmd.Print(ROAD_NAME + " - " + MODULE_NAME + char(10));
   mySerCmd.Print(F("Starting setup.\n"));
@@ -73,7 +81,7 @@ void setup() {
   blnAccsPwrFault = chkAccessoryPower();
   if (!blnAccsPwrFault)
   { // Normal operation.
-	setupAddressableLeds(); // Initialize addressable LEDs.
+	  setupAddressableLeds(); // Initialize addressable LEDs.
     //
     showBlockStatus();
     //
@@ -142,6 +150,13 @@ void loop() {
     if ( ret == 0 )
       mySerCmd.Print (F("ERROR: Urecognized command. \n"));
     // End of code from Demo_SerialCmd
+    //
+    // Start of code to check if a I2C message has been received.
+    if (newI2cRxData == true) {
+        handleI2cReceivedData();
+        newI2cRxData = false;
+    }
+    // End of code to check if a I2C message has been received.
   }
   else
   { // Fault condition.
