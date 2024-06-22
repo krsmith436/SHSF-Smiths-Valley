@@ -236,6 +236,11 @@ void playSound (int intSoundClip, int intVolume) {
 }
 //
 //
+void soundHorn (void) {
+  playSound(DIESEL_HORN_CLIP, 15);
+}
+//
+//
 void soundTrack (void) {
   playSound(TRAIN_TRACK_CLIP, 10);
 }

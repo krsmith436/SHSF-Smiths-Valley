@@ -1,7 +1,7 @@
 void handleI2cReceivedData() {
     switch (I2cRxData) {
       case 1: 
-        soundWhistle();
+        soundHorn();
         break;
       default:
         mySerCmd.Print (F("ERROR: Urecognized I2C command = "));

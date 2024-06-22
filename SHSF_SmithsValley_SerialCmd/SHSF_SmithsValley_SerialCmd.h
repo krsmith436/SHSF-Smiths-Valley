@@ -64,8 +64,9 @@ const int  TRAIN_TRACK_CLIP   = 3;
 const int  JUST_WHISTLE_CLIP  = 4;
 const int  RAILROAD_CROSSING_CLIP = 5;
 const int  RAILROAD_CROSSING_SHORT_CLIP = 6;
+const int  DIESEL_HORN_CLIP  = 7;
 const int SOUND_NUMBER_MIN = 1;
-const int SOUND_NUMBER_MAX = 6;
+const int SOUND_NUMBER_MAX = 7;
 //
 // for Addressable LEDs
 const int ADDRESS_LED_COUNT = 4;

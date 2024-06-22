@@ -96,6 +96,7 @@ void setup() {
     { // Normal operation.
       mySerCmd.AddCmd ( F ( "a" ) , SERIALCMD_FROMALL, soundAllAboard );
       mySerCmd.AddCmd ( F ( "w" ) , SERIALCMD_FROMALL, soundWhistle );
+      mySerCmd.AddCmd ( F ( "h" ) , SERIALCMD_FROMALL, soundHorn );
       mySerCmd.AddCmd ( F ( "cc" ) , SERIALCMD_FROMALL, soundTrack );
     }
   }
@@ -126,6 +127,7 @@ void getHelp() {
   if (!blnMp3PlayerFault)
   {
     mySerCmd.Print(F("a \t All Abord sound clip\n"));
+    mySerCmd.Print(F("h \t Diesel Horn sound clip\n"));
     mySerCmd.Print(F("w \t Whistle sound clip\n"));
     mySerCmd.Print(F("cc \t Click clack train track sound clip\n"));
   }
