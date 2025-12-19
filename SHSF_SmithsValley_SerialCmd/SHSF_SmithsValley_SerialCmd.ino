@@ -150,7 +150,7 @@ void loop() {
     int8_t ret;
     ret = mySerCmd.ReadSer();
     if ( ret == 0 )
-      mySerCmd.Print (F("ERROR: Urecognized command. \n"));
+      mySerCmd.Print (F("UNRECOGNIZED\n"));
     // End of code from Demo_SerialCmd
     //
     // Start of code to check if a I2C message has been received.
