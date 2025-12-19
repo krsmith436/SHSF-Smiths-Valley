@@ -26,13 +26,13 @@ void toggleCab ( void ) {
   //
   sParam = mySerCmd.ReadNext();
   if ( sParam == NULL ) {
-    mySerCmd.Print ( F ( "ERROR: Missing cab number \n" ) );
+    sendMissingOptions();
     return;
   }
   //
   ulngNumber = strtoul(sParam, NULL, 10);
   if ((ulngNumber < CAB_NUMBER_MIN) || (ulngNumber > CAB_NUMBER_MAX)) {
-    mySerCmd.Print ( F ( "ERROR: Out of range cab number \n" ) );
+    sendOutOfRange();
     return;
   }
   //
@@ -50,7 +50,7 @@ void setCabAll ( void ) {
   //
   sParam = mySerCmd.ReadNext();
   if ( sParam == NULL ) {
-    mySerCmd.Print ( F ( "ERROR: Missing cab letter a or b \n" ) );
+    sendMissingOptions();
     return;
   }
   //
@@ -71,7 +71,7 @@ void setCabAll ( void ) {
     }
   }
   else {
-    mySerCmd.Print ( F ( "ERROR: Out of range cab letter \n" ) );
+    sendOutOfRange();
     return;
   }
   for (int i = CAB_REGISTER_START_BIT; i < CAB_REGISTER_START_BIT + CAB_NUMBER_MAX; i++) {
@@ -91,13 +91,13 @@ void toggleBlock ( void ) {
   //
   sParam = mySerCmd.ReadNext();
   if ( sParam == NULL ) {
-    mySerCmd.Print ( F ( "ERROR: Missing block number \n" ) );
+    sendMissingOptions();
     return;
   }
   //
   ulngNumber = strtoul(sParam, NULL, 10);
   if ((ulngNumber < BLOCK_NUMBER_MIN) || (ulngNumber > BLOCK_NUMBER_MAX)) {
-    mySerCmd.Print ( F ( "ERROR: Out of range block number \n" ) );
+    sendOutOfRange();
     return;
   }
   //
@@ -115,7 +115,7 @@ void setBlockAll ( void ) {
   //
   sParam = mySerCmd.ReadNext();
   if ( sParam == NULL ) {
-    mySerCmd.Print ( F ( "ERROR: Missing block letter o or f \n" ) );
+    sendMissingOptions();
     return;
   }
   //
@@ -136,7 +136,7 @@ void setBlockAll ( void ) {
     }
   }
   else {
-    mySerCmd.Print ( F ( "ERROR: Out of range block letter \n" ) );
+    sendOutOfRange();
     return;
   }
   for (int i = BLOCK_REGISTER_START_BIT; i < BLOCK_REGISTER_START_BIT + BLOCK_NUMBER_MAX; i++) {
@@ -155,7 +155,7 @@ void setTurnoutAll ( void ) {
   //
   sParam = mySerCmd.ReadNext();
   if ( sParam == NULL ) {
-    mySerCmd.Print ( F ( "ERROR: Missing turnout position \n" ) );
+    sendMissingOptions();
     return;
   }
   //
@@ -180,7 +180,7 @@ void setTurnoutAll ( void ) {
     }
   }
   else {
-    mySerCmd.Print ( F ( "ERROR: Out of range turnout position \n" ) );
+    sendOutOfRange();
     return;
   }
   regWriteBuffer();
@@ -194,13 +194,13 @@ void toggleTurnout ( void ) {
   //
   sParam = mySerCmd.ReadNext();
   if ( sParam == NULL ) {
-    mySerCmd.Print ( F ( "ERROR: Missing turnout number \n" ) );
+    sendMissingOptions();
     return;
   }
   //
   ulngNumber = strtoul(sParam, NULL, 10);
   if ((ulngNumber < TURNOUT_NUMBER_MIN) || (ulngNumber > TURNOUT_NUMBER_MAX)) {
-    mySerCmd.Print ( F ( "ERROR: Out of range turnout number \n" ) );
+    sendOutOfRange();
     return;
   }
   //
@@ -231,7 +231,7 @@ void playSound (int intSoundClip, int intVolume) {
   }
   else
   {
-    mySerCmd.Print(F("MP3Player Mini is busy playing another clip.\n"));
+    mySerCmd.Print(F("MP3PLAYER BUSY\n"));
   }
 }
 //
@@ -294,14 +294,20 @@ void dsplyFaultStatus (void) {
 //
 //
 void getVersion (void) {
-  mySerCmd.Print(F("Arduino:  ") );
+  mySerCmd.Print(F("Arduino:  "));
   mySerCmd.Print(VERSION_ID + char(10));
 }
 //
-// --------------- User function from Demo_SerialCmd ---------------
-
+void sendMissingOptions (void) {
+  mySerCmd.Print (F("MISSING OPTIONS\n"));
+}
+//
+void sendOutOfRange (void) {
+  mySerCmd.Print (F("OUT OF RANGE\n"));
+}
+//
 void sendOK ( void ) {
-  mySerCmd.Print ( F ( "OK \n" ) );
+  mySerCmd.Print (F("OK\n"));
 }
 //
 // --------------- Functions from Demo_SerialCmd ---------------

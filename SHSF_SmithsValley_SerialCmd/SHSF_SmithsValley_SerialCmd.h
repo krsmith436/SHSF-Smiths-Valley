@@ -1,6 +1,6 @@
 // all # define options should be defined here,  this keeps them together in a nice way.
 //
-String VERSION_ID = "SerialCmd V7 2024-Apr-20";
+String VERSION_ID = "SerialCmd V8 2025-Dec-17";
 /* 
 V7 - Added I2C.
 V6 - Moved to GitHub.
